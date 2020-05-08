@@ -399,7 +399,7 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
             currentClass = [currentClass superclass];
         }
         
-        [localDataTask cancel];
+        //[localDataTask cancel];
         [session finishTasksAndInvalidate];
     }
 }
@@ -425,7 +425,7 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
 - (void)af_resume {
     NSAssert([self respondsToSelector:@selector(state)], @"Does not respond to state");
     NSURLSessionTaskState state = [self state];
-    //[self af_resume];
+    [self af_resume];
     
     if (state != NSURLSessionTaskStateRunning) {
         [[NSNotificationCenter defaultCenter] postNotificationName:AFNSURLSessionTaskDidResumeNotification object:self];
