@@ -405,7 +405,8 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
 }
 
 + (void)swizzleResumeAndSuspendMethodForClass:(Class)theClass {
-    Method afResumeMethod = class_getInstanceMethod(self, @selector(af_resume));
+    //Disable swizzling
+    /*Method afResumeMethod = class_getInstanceMethod(self, @selector(af_resume));
     Method afSuspendMethod = class_getInstanceMethod(self, @selector(af_suspend));
 
     if (af_addMethod(theClass, @selector(af_resume), afResumeMethod)) {
@@ -414,7 +415,7 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
 
     if (af_addMethod(theClass, @selector(af_suspend), afSuspendMethod)) {
         af_swizzleSelector(theClass, @selector(suspend), @selector(af_suspend));
-    }
+    }*/
 }
 
 - (NSURLSessionTaskState)state {
