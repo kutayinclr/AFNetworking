@@ -259,6 +259,11 @@
                                          failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
 {
     NSError *serializationError = nil;
+    //On some of 11Sight's usecase baseurl become nil, until we fix that let's prevent crashing.
+    if (self.baseURL == nil) {
+        failure(nil, nil);
+        return nil;
+    }
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:&serializationError];
     for (NSString *headerField in headers.keyEnumerator) {
         [request setValue:headers[headerField] forHTTPHeaderField:headerField];
